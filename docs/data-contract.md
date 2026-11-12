@@ -1,0 +1,7 @@
+# 特征可得性口径
+
+所有time/cutoff为有符号整数，revision非负，record_id唯一，特征取值int/string/null但同feature目录中固定类型。相同event_time的已可得候选按revision大、source_priority大、record_id Unicode大优先；赢家delete不改变其他事件赢家，只按该feature策略决定missing或继续更早事件。TTL在扫描各个事件时判，过期不能回退到更老事件并声称新鲜。
+
+null是命中有记录但值缺测，返回record_id及value=null，不再回退。missing要区分无entity、无可得候选、过TTL和delete-policy。available_time可晚于事件，不能用它作为事件最新顺序；knowledge_cutoff可早于event_cutoff，仍独立过滤。边界ttl20的event10与cutoff30恰可用。
+
+旧warehouse_version为不可变候选集合，新记录只加新版本；相同版本相同双截止重放必须稳定。独立参考可枚举小集，正式索引不得逐请求扫描全库。初始资料工具只清点record和request身份，不做时间选择。

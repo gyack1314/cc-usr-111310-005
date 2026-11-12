@@ -1,0 +1,91 @@
+{
+  "kind": "point-in-time-features",
+  "features": [
+    {
+      "name": "temperature",
+      "ttl": 20,
+      "delete_policy": "fallback"
+    },
+    {
+      "name": "state",
+      "ttl": 20,
+      "delete_policy": "missing"
+    }
+  ],
+  "records": [
+    {
+      "record_id": "t1",
+      "entity": "d1",
+      "feature": "temperature",
+      "event_time": 10,
+      "available_time": 12,
+      "revision": 1,
+      "source_priority": 1,
+      "op": "value",
+      "value": 10
+    },
+    {
+      "record_id": "t2",
+      "entity": "d1",
+      "feature": "temperature",
+      "event_time": 10,
+      "available_time": 30,
+      "revision": 2,
+      "source_priority": 1,
+      "op": "value",
+      "value": 99
+    },
+    {
+      "record_id": "t3",
+      "entity": "d1",
+      "feature": "temperature",
+      "event_time": 20,
+      "available_time": 20,
+      "revision": 1,
+      "source_priority": 1,
+      "op": "value",
+      "value": null
+    },
+    {
+      "record_id": "t4",
+      "entity": "d1",
+      "feature": "temperature",
+      "event_time": 25,
+      "available_time": 26,
+      "revision": 1,
+      "source_priority": 1,
+      "op": "delete"
+    },
+    {
+      "record_id": "s1",
+      "entity": "d1",
+      "feature": "state",
+      "event_time": 10,
+      "available_time": 10,
+      "revision": 1,
+      "source_priority": 1,
+      "op": "value",
+      "value": "ok"
+    },
+    {
+      "record_id": "s2",
+      "entity": "d1",
+      "feature": "state",
+      "event_time": 25,
+      "available_time": 26,
+      "revision": 1,
+      "source_priority": 1,
+      "op": "delete"
+    }
+  ],
+  "requests": [
+    {
+      "request_id": "eq",
+      "entity": "d1",
+      "event_cutoff": 30,
+      "knowledge_cutoff": 15
+    }
+  ],
+  "warehouse_version": "fw1",
+  "policy_version": "fp1"
+}
